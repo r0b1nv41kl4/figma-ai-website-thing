@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Positivus — Digital Marketing Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --black:#191A23;
+    --green:#B9FF66;
+    --white:#F3F3F3;
+    --dark-card:#191A23;
+    --radius:14px;
+    --font:'Space Grotesk',sans-serif;
+  }
+  html{scroll-behavior:smooth}
+  body{font-family:var(--font);background:var(--white);color:var(--black);overflow-x:hidden}
+
+  /* NAV */
+  nav{display:flex;align-items:center;justify-content:space-between;padding:20px 60px;background:var(--white);position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(0,0,0,.06)}
+  .logo{display:flex;align-items:center;gap:8px;font-size:20px;font-weight:700;text-decoration:none;color:var(--black)}
+  .logo svg{width:28px;height:28px}
+  .nav-links{display:flex;align-items:center;gap:36px;list-style:none}
+  .nav-links a{text-decoration:none;color:var(--black);font-size:15px;font-weight:500;transition:opacity .2s}
+  .nav-links a:hover{opacity:.6}
+  .btn-outline{border:1.5px solid var(--black);background:transparent;padding:10px 24px;border-radius:14px;font-size:15px;font-weight:500;cursor:pointer;font-family:var(--font);transition:background .2s,color .2s}
+  .btn-outline:hover{background:var(--black);color:#fff}
+  .btn-dark{background:var(--black);color:#fff;border:none;padding:12px 28px;border-radius:14px;font-size:15px;font-weight:500;cursor:pointer;font-family:var(--font);transition:opacity .2s}
+  .btn-dark:hover{opacity:.8}
+  .btn-green{background:var(--green);color:var(--black);border:none;padding:12px 28px;border-radius:14px;font-size:15px;font-weight:600;cursor:pointer;font-family:var(--font);transition:opacity .2s}
+  .btn-green:hover{opacity:.8}
+
+  /* HERO */
+  .hero{padding:60px 60px 80px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;max-width:1200px;margin:0 auto}
+  .hero h1{font-size:58px;font-weight:700;line-height:1.1;margin-bottom:24px}
+  .hero p{font-size:17px;line-height:1.7;color:#444;margin-bottom:36px;max-width:440px}
+  .hero-illustration{display:flex;justify-content:center;align-items:center}
+  .hero-img-wrap{position:relative;width:100%;max-width:480px}
+  .hero-svg{width:100%;height:auto}
+
+  /* LOGOS */
+  .logos{border-top:1px solid rgba(0,0,0,.12);border-bottom:1px solid rgba(0,0,0,.12);padding:28px 60px;display:flex;align-items:center;justify-content:space-between;gap:20px;overflow:hidden}
+  .logos-inner{display:flex;gap:60px;align-items:center;justify-content:center;flex:1}
+  .logo-brand{font-size:20px;font-weight:700;opacity:.6;white-space:nowrap;letter-spacing:-0.5px}
+  .logo-brand.amazon{font-style:italic}
+
+  /* SECTION LABEL */
+  .section-label{display:inline-block;background:var(--green);padding:4px 12px;border-radius:7px;font-size:20px;font-weight:700;margin-bottom:0}
+  .section-header{display:flex;align-items:flex-start;gap:24px;margin-bottom:48px;max-width:1200px;margin-left:auto;margin-right:auto;padding:0 60px}
+  .section-header p{font-size:15px;line-height:1.65;color:#555;max-width:460px;padding-top:4px}
+
+  /* SERVICES */
+  .services{padding:80px 0}
+  .services-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:1200px;margin:0 auto;padding:0 60px}
+  .service-card{border-radius:var(--radius);padding:32px;display:flex;flex-direction:column;justify-content:space-between;min-height:220px;border:1.5px solid var(--black);position:relative;overflow:hidden;transition:transform .25s}
+  .service-card:hover{transform:translateY(-4px)}
+  .service-card.light{background:var(--white)}
+  .service-card.green{background:var(--green)}
+  .service-card.dark{background:var(--dark-card);color:#fff}
+  .card-top{display:flex;justify-content:space-between;align-items:flex-start}
+  .card-title{font-size:22px;font-weight:700;max-width:200px;line-height:1.25}
+  .dark .card-title{color:#fff}
+  .card-icon{width:90px;height:90px;flex-shrink:0}
+  .card-link{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:500;text-decoration:none;color:inherit;margin-top:auto}
+  .dark .card-link{color:#fff}
+  .card-link svg{width:22px;height:22px}
+  .card-link:hover{text-decoration:underline}
+
+  /* CTA BANNER */
+  .cta-banner-wrap{padding:0 60px;margin-bottom:80px}
+  .cta-banner{background:var(--white);border:1.5px solid var(--black);border-radius:var(--radius);padding:48px 56px;display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;position:relative;overflow:hidden}
+  .cta-banner h2{font-size:32px;font-weight:700;max-width:480px;line-height:1.3}
+  .cta-banner p{color:#555;margin-top:12px;font-size:15px;line-height:1.6;max-width:440px}
+  .cta-illustration{position:absolute;right:48px;top:50%;transform:translateY(-50%);width:220px;opacity:.9}
+
+  /* CASE STUDIES */
+  .case-studies{padding:80px 0}
+  .cases-grid-wrap{padding:0 60px}
+  .cases-grid{background:var(--dark-card);border-radius:var(--radius);padding:48px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;max-width:1200px;margin:0 auto}
+  .case-item{padding:0 36px;position:relative}
+  .case-item:not(:last-child)::after{content:'';position:absolute;right:0;top:10%;height:80%;width:1px;background:rgba(255,255,255,.2)}
+  .case-item:first-child{padding-left:0}
+  .case-item:last-child{padding-right:0}
+  .case-item p{color:#ccc;font-size:14px;line-height:1.7;margin-bottom:20px}
+  .case-link{display:flex;align-items:center;gap:8px;color:var(--green);font-size:15px;font-weight:500;text-decoration:none}
+  .case-link:hover{text-decoration:underline}
+  .case-link svg{width:20px;height:20px}
+
+  /* PROCESS */
+  .process{padding:80px 0}
+  .process-list{max-width:1200px;margin:0 auto;padding:0 60px;display:flex;flex-direction:column;gap:16px}
+  .process-item{border:1.5px solid var(--black);border-radius:var(--radius);overflow:hidden}
+  .process-header{display:flex;align-items:center;justify-content:space-between;padding:24px 32px;cursor:pointer;user-select:none;transition:background .2s}
+  .process-header:hover{background:rgba(0,0,0,.03)}
+  .process-item.open .process-header{background:var(--green)}
+  .process-num{font-size:32px;font-weight:700;margin-right:20px;min-width:56px}
+  .process-title{font-size:20px;font-weight:600;flex:1}
+  .process-toggle{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--black);display:flex;align-items:center;justify-content:center;flex-shrink:0;background:transparent;transition:background .2s}
+  .process-item.open .process-toggle{background:var(--black)}
+  .process-toggle svg{width:18px;height:18px;transition:transform .3s}
+  .process-item.open .process-toggle svg{stroke:#fff}
+  .process-body{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s}
+  .process-item.open .process-body{max-height:200px}
+  .process-body-inner{padding:0 32px 28px;border-top:1.5px solid rgba(0,0,0,.12);padding-top:20px;font-size:15px;line-height:1.7;color:#444}
+
+  /* TEAM */
+  .team{padding:80px 0}
+  .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1200px;margin:0 auto;padding:0 60px}
+  .team-card{border:1.5px solid var(--black);border-radius:var(--radius);padding:28px;position:relative;background:var(--white);transition:transform .25s,box-shadow .25s}
+  .team-card:hover{transform:translateY(-4px);box-shadow:6px 6px 0 var(--black)}
+  .team-top{display:flex;align-items:flex-start;gap:16px;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid rgba(0,0,0,.12)}
+  .team-avatar{width:70px;height:70px;border-radius:50%;object-fit:cover;flex-shrink:0;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;color:var(--black)}
+  .team-info h3{font-size:17px;font-weight:700;margin-bottom:3px}
+  .team-info span{font-size:13px;color:#666}
+  .team-li-btn{position:absolute;top:20px;right:20px;width:34px;height:34px;background:var(--black);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s}
+  .team-li-btn:hover{background:#333}
+  .team-li-btn svg{width:16px;height:16px;fill:#fff}
+  .team-bio{font-size:13px;line-height:1.65;color:#555}
+  .see-all-wrap{display:flex;justify-content:flex-end;max-width:1200px;margin:32px auto 0;padding:0 60px}
+
+  /* TESTIMONIALS */
+  .testimonials{padding:80px 0}
+  .testimonials-wrap{padding:0 60px}
+  .testimonials-track-wrap{background:var(--dark-card);border-radius:var(--radius);padding:48px 60px;max-width:1200px;margin:0 auto;overflow:hidden;position:relative}
+  .testimonials-track{display:flex;gap:28px;transition:transform .5s ease}
+  .testimonial-card{background:transparent;border:1px solid rgba(255,255,255,.15);border-radius:var(--radius);padding:36px;flex:0 0 calc(50% - 14px);color:#fff;position:relative}
+  .testimonial-card::before{content:'"';position:absolute;top:-20px;left:24px;font-size:80px;color:var(--green);font-family:Georgia,serif;line-height:1}
+  .testimonial-card p{font-size:15px;line-height:1.75;color:#ddd;margin-bottom:28px}
+  .testimonial-author{border-top:1px solid rgba(255,255,255,.15);padding-top:20px}
+  .testimonial-author strong{font-size:16px;color:var(--green);display:block;font-weight:600}
+  .testimonial-author span{font-size:13px;color:#999}
+  .testi-controls{display:flex;align-items:center;justify-content:space-between;margin-top:36px}
+  .testi-arrows{display:flex;gap:16px}
+  .testi-arrow{width:42px;height:42px;border-radius:50%;border:1.5px solid rgba(255,255,255,.3);background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color .2s,background .2s}
+  .testi-arrow:hover{border-color:#fff;background:rgba(255,255,255,.1)}
+  .testi-arrow svg{width:18px;height:18px;stroke:#fff}
+  .testi-dots{display:flex;gap:10px;align-items:center}
+  .testi-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;transition:background .2s,transform .2s}
+  .testi-dot.active{background:var(--green);transform:scale(1.3)}
+
+  /* CONTACT */
+  .contact{padding:80px 0}
+  .contact-wrap{padding:0 60px}
+  .contact-inner{background:var(--white);border:1.5px solid var(--black);border-radius:var(--radius);max-width:1200px;margin:0 auto;padding:60px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+  .contact-form{display:flex;flex-direction:column;gap:20px}
+  .radio-group{display:flex;gap:24px}
+  .radio-opt{display:flex;align-items:center;gap:8px;cursor:pointer;font-size:15px;font-weight:500}
+  .radio-opt input{accent-color:var(--green);width:18px;height:18px;cursor:pointer}
+  .form-group{display:flex;flex-direction:column;gap:8px}
+  .form-group label{font-size:14px;font-weight:500;color:var(--black)}
+  .form-group input,.form-group textarea{background:#F3F3F3;border:1.5px solid #ccc;border-radius:10px;padding:14px 16px;font-size:15px;font-family:var(--font);outline:none;transition:border-color .2s}
+  .form-group input:focus,.form-group textarea:focus{border-color:var(--black)}
+  .form-group textarea{resize:vertical;min-height:140px}
+  .contact-deco{display:flex;align-items:center;justify-content:center}
+  .contact-deco svg{width:100%;max-width:340px;height:auto}
+
+  /* FOOTER */
+  footer{background:var(--black);color:#fff;padding:48px 60px 28px;border-radius:var(--radius) var(--radius) 0 0}
+  .footer-top{display:flex;align-items:center;justify-content:space-between;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.15);margin-bottom:36px}
+  .footer-logo{font-size:20px;font-weight:700;color:#fff;text-decoration:none;display:flex;align-items:center;gap:8px}
+  .footer-nav{display:flex;gap:28px;list-style:none}
+  .footer-nav a{text-decoration:none;color:#fff;font-size:14px;border-bottom:1px solid rgba(255,255,255,.4);padding-bottom:1px;transition:opacity .2s}
+  .footer-nav a:hover{opacity:.7}
+  .footer-socials{display:flex;gap:12px}
+  .social-btn{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s;text-decoration:none}
+  .social-btn:hover{background:rgba(255,255,255,.3)}
+  .social-btn svg{width:16px;height:16px;fill:#fff}
+  .footer-mid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;margin-bottom:36px}
+  .footer-contact h4{font-size:16px;font-weight:700;margin-bottom:16px;background:var(--green);color:var(--black);display:inline-block;padding:4px 12px;border-radius:7px}
+  .footer-contact p,.footer-contact a{font-size:14px;color:#aaa;display:block;margin-bottom:8px;text-decoration:none;line-height:1.6}
+  .footer-contact a:hover{color:#fff}
+  .footer-subscribe{grid-column:2/4;display:flex;flex-direction:column;justify-content:center}
+  .subscribe-form{display:flex;gap:12px;margin-top:12px}
+  .subscribe-form input{flex:1;background:transparent;border:1px solid rgba(255,255,255,.3);border-radius:10px;padding:12px 16px;color:#fff;font-size:14px;font-family:var(--font);outline:none}
+  .subscribe-form input::placeholder{color:#888}
+  .subscribe-form input:focus{border-color:rgba(255,255,255,.6)}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,.15);padding-top:24px;display:flex;align-items:center;gap:20px;font-size:13px;color:#888}
+  .footer-bottom a{color:#888;text-decoration:underline}
+
+  /* ANIMATIONS */
+  @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+  .fade-up{opacity:0;animation:fadeUp .7s ease forwards}
+  .fade-up-1{animation-delay:.1s}
+  .fade-up-2{animation-delay:.2s}
+  .fade-up-3{animation-delay:.3s}
+  .fade-up-4{animation-delay:.4s}
+
+  @media(max-width:900px){
+    nav{padding:16px 24px}
+    .nav-links{display:none}
+    .hero{grid-template-columns:1fr;padding:40px 24px}
+    .hero h1{font-size:38px}
+    .hero-illustration{display:none}
+    .logos{padding:20px 24px}
+    .logos-inner{gap:24px;flex-wrap:wrap;justify-content:center}
+    .section-header{padding:0 24px;flex-direction:column;gap:12px}
+    .services-grid{grid-template-columns:1fr;padding:0 24px}
+    .cta-banner-wrap{padding:0 24px;margin-bottom:60px}
+    .cta-banner{padding:32px 28px}
+    .cta-illustration{display:none}
+    .cases-grid-wrap{padding:0 24px}
+    .cases-grid{grid-template-columns:1fr;padding:32px 28px}
+    .case-item::after{display:none}
+    .case-item{padding:0 0 28px;margin-bottom:28px;border-bottom:1px solid rgba(255,255,255,.15)}
+    .case-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+    .process-list{padding:0 24px}
+    .team-grid{grid-template-columns:1fr;padding:0 24px}
+    .see-all-wrap{padding:0 24px}
+    .testimonials-wrap{padding:0 24px}
+    .testimonials-track-wrap{padding:32px 28px}
+    .testimonial-card{flex:0 0 100%}
+    .contact-wrap{padding:0 24px}
+    .contact-inner{grid-template-columns:1fr;padding:32px 28px}
+    .contact-deco{display:none}
+    footer{padding:36px 24px 20px}
+    .footer-top{flex-direction:column;gap:24px;align-items:flex-start}
+    .footer-mid{grid-template-columns:1fr}
+    .footer-subscribe{grid-column:auto}
+    .subscribe-form{flex-direction:column}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="28" height="28" rx="4" fill="#191A23"/>
+      <path d="M7 21L14 7L21 21" stroke="#B9FF66" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M9.5 16h9" stroke="#B9FF66" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    Positivus
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">About us</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#cases">Use Cases</a></li>
+    <li><a href="#process">Pricing</a></li>
+    <li><a href="#contact">Blog</a></li>
+  </ul>
+  <button class="btn-outline">Request a quote</button>
+</nav>
+
+<!-- HERO -->
+<section style="background:var(--white)">
+  <div class="hero fade-up fade-up-1">
+    <div>
+      <h1>Navigating the digital landscape for success</h1>
+      <p>Our digital marketing agency helps businesses grow and succeed online through a range of services including SEO, PPC, social media marketing, and content creation.</p>
+      <button class="btn-dark">Book a consultation</button>
+    </div>
+    <div class="hero-illustration">
+      <svg class="hero-svg" viewBox="0 0 480 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Megaphone body -->
+        <ellipse cx="280" cy="190" rx="90" ry="56" stroke="#191A23" stroke-width="2.5" fill="none"/>
+        <rect x="125" y="165" width="160" height="50" rx="10" fill="none" stroke="#191A23" stroke-width="2.5"/>
+        <rect x="100" y="158" width="30" height="64" rx="6" fill="none" stroke="#191A23" stroke-width="2.5"/>
+        <!-- Sound waves -->
+        <path d="M370 170 Q400 190 370 210" stroke="#191A23" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M380 155 Q422 190 380 225" stroke="#191A23" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <!-- Stars/sparkles -->
+        <path d="M410 130 L412 118 L414 130 L426 132 L414 134 L412 146 L410 134 L398 132Z" fill="#B9FF66" stroke="none"/>
+        <path d="M155 120 L156.5 113 L158 120 L165 121.5 L158 123 L156.5 130 L155 123 L148 121.5Z" fill="#191A23" stroke="none"/>
+        <path d="M70 195 L71.5 188 L73 195 L80 196.5 L73 198 L71.5 205 L70 198 L63 196.5Z" fill="#B9FF66" stroke="none"/>
+        <!-- Floating icons -->
+        <circle cx="360" cy="95" r="26" fill="#fff" stroke="#191A23" stroke-width="2"/>
+        <path d="M348 95c0-6.627 5.373-12 12-12s12 5.373 12 12-5.373 12-12 12" stroke="#191A23" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <circle cx="360" cy="95" r="4" fill="#191A23"/>
+        <!-- Chart icon -->
+        <circle cx="420" cy="155" r="26" fill="#B9FF66" stroke="#191A23" stroke-width="2"/>
+        <path d="M408 163l5-8 5 4 5-10 5 6" stroke="#191A23" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- Play icon -->
+        <circle cx="400" cy="255" r="22" fill="#fff" stroke="#191A23" stroke-width="2"/>
+        <polygon points="393,247 393,263 411,255" fill="#191A23"/>
+        <!-- Location icon -->
+        <circle cx="348" cy="288" r="22" fill="#B9FF66" stroke="#191A23" stroke-width="2"/>
+        <path d="M348 278c-4.4 0-8 3.6-8 8 0 6 8 16 8 16s8-10 8-16c0-4.4-3.6-8-8-8z" fill="#191A23"/>
+        <circle cx="348" cy="286" r="2.5" fill="#B9FF66"/>
+        <!-- Dots -->
+        <circle cx="200" cy="110" r="6" fill="#191A23"/>
+        <circle cx="320" cy="145" r="5" fill="#B9FF66"/>
+        <circle cx="175" cy="260" r="4" fill="#191A23"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- LOGOS -->
+<div class="logos fade-up fade-up-2">
+  <div class="logos-inner">
+    <div class="logo-brand" style="font-style:italic;font-size:22px">amazon</div>
+    <div class="logo-brand" style="font-size:18px;letter-spacing:-1px">dribbble</div>
+    <div class="logo-brand">HubSpot</div>
+    <div class="logo-brand">
+      <span style="background:#191A23;color:#fff;padding:2px 6px;border-radius:4px;font-size:13px">N</span> Notion
+    </div>
+    <div class="logo-brand" style="letter-spacing:3px">NETFLIX</div>
+    <div class="logo-brand">zoom</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-header">
+    <div>
+      <span class="section-label">Services</span>
+    </div>
+    <p>At our digital marketing agency, we offer a range of services to help businesses grow and succeed online. These services include:</p>
+  </div>
+  <div class="services-grid">
+
+    <div class="service-card light">
+      <div class="card-top">
+        <div class="card-title">Search engine optimization</div>
+        <svg class="card-icon" viewBox="0 0 90 90" fill="none">
+          <circle cx="38" cy="38" r="24" stroke="#191A23" stroke-width="2.5" fill="none"/>
+          <line x1="56" y1="56" x2="74" y2="74" stroke="#191A23" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="38" cy="38" r="10" stroke="#B9FF66" stroke-width="2" fill="none"/>
+          <path d="M30 38h16M38 30v16" stroke="#191A23" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <a class="card-link" href="#">
+        <svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="10" stroke="#191A23" stroke-width="1.5"/><path d="M8 11h6M11 8l3 3-3 3" stroke="#191A23" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Learn more
+      </a>
+    </div>
+
+    <div class="service-card green">
+      <div class="card-top">
+        <div class="card-title">Pay-per-click advertising</div>
+        <svg class="card-icon" viewBox="0 0 90 90" fill="none">
+          <rect x="14" y="20" width="52" height="40" rx="6" stroke="#191A23" stroke-width="2.5" fill="none"/>
+          <path d="M14 32h52" stroke="#191A23" stroke-width="2"/>
+          <circle cx="60" cy="55" r="10" fill="#191A23"/>
+          <path d="M55 55l3 3 5-5" stroke="#B9FF66" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <a class="card-link" href="#">
+        <svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="10" stroke="#191A23" stroke-width="1.5"/><path d="M8 11h6M11 8l3 3-3 3" stroke="#191A23" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Learn more
+      </a>
+    </div>
+
+    <div class="service-card dark">
+      <div class="card-top">
+        <div class="card-title">Social Media Marketing</div>
+        <svg class="card-icon" viewBox="0 0 90 90" fill="none">
+          <rect x="20" y="22" width="50" height="46" rx="8" stroke="#B9FF66" stroke-width="2" fill="none"/>
+          <circle cx="36" cy="42" r="7" stroke="#B9FF66" stroke-width="1.5" fill="none"/>
+          <path d="M20 60c0-8 7-12 16-12s16 4 16 12" stroke="#B9FF66" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M56 36h8M56 44h6M56 52h4" stroke="#B9FF66" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <a class="card-link" href="#">
+        <svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="10" stroke="#fff" stroke-width="1.5"/><path d="M8 11h6M11 8l3 3-3 3" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Learn more
+      </a>
+    </div>
+
+    <div class="service-card light">
+      <div class="card-top">
+        <div class="card-title">Email Marketing</div>
+        <svg class="card-icon" viewBox="0 0 90 90" fill="none">
+          <rect x="14" y="26" width="62" height="42" rx="6" stroke="#191A23" stroke-width="2.5" fill="none"/>
+          <path d="M14 32l31 22 31-22" stroke="#191A23" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="66" cy="30" r="10" fill="#B9FF66" stroke="#191A23" stroke-width="1.5"/>
+          <path d="M62 30h8M66 26v8" stroke="#191A23" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <a class="card-link" href="#">
+        <svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="10" stroke="#191A23" stroke-width="1.5"/><path d="M8 11h6M11 8l3 3-3 3" stroke="#191A23" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Learn more
+      </a>
+    </div>
+
+    <div class="service-card green">
+      <div class="card-top">
+        <div class="card-title">Content Creation</div>
+        <svg class="card-icon" viewBox="0 0 90 90" fill="none">
+          <rect x="18" y="18" width="44" height="54" rx="6" stroke="#191A23" stroke-width="2.5" fill="none"/>
+          <path d="M28 34h24M28 42h24M28 50h16" stroke="#191A23" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="66" cy="62" r="12" fill="#191A23"/>
+          <path d="M61 62h10M66 57v10" stroke="#B9FF66" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <a class="card-link" href="#">
+        <svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="10" stroke="#191A23" stroke-width="1.5"/><path d="M8 11h6M11 8l3 3-3 3" stroke="#191A23" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Learn more
+      </a>
+    </div>
+
+    <div class="service-card dark">
+      <div class="card-top">
+        <div class="card-title">Analytics and Tracking</div>
+        <svg class="card-icon" viewBox="0 0 90 90" fill="none">
+          <rect x="14" y="20" width="62" height="50" rx="6" stroke="#B9FF66" stroke-width="2" fill="none"/>
+          <path d="M22 55l12-16 10 8 12-20 10 12" stroke="#B9FF66" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="22" cy="55" r="3" fill="#B9FF66"/>
+          <circle cx="34" cy="39" r="3" fill="#B9FF66"/>
+          <circle cx="44" cy="47" r="3" fill="#B9FF66"/>
+          <circle cx="56" cy="27" r="3" fill="#B9FF66"/>
+          <circle cx="66" cy="39" r="3" fill="#B9FF66"/>
+        </svg>
+      </div>
+      <a class="card-link" href="#">
+        <svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="10" stroke="#fff" stroke-width="1.5"/><path d="M8 11h6M11 8l3 3-3 3" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Learn more
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner-wrap">
+<div class="cta-banner">
+  <div style="max-width:540px">
+    <h2>Let's make things happen</h2>
+    <p>Contact us today to learn more about how our digital marketing services can help your business grow and succeed online.</p>
+    <button class="btn-dark" style="margin-top:28px">Get your free proposal</button>
+  </div>
+  <div class="cta-illustration">
+    <svg viewBox="0 0 220 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Starburst lines -->
+      <g stroke="#191A23" stroke-width="1.2" opacity="0.4">
+        <line x1="110" y1="100" x2="110" y2="10"/><line x1="110" y1="100" x2="110" y2="190"/>
+        <line x1="110" y1="100" x2="20" y2="100"/><line x1="110" y1="100" x2="200" y2="100"/>
+        <line x1="110" y1="100" x2="46" y2="36"/><line x1="110" y1="100" x2="174" y2="164"/>
+        <line x1="110" y1="100" x2="174" y2="36"/><line x1="110" y1="100" x2="46" y2="164"/>
+        <line x1="110" y1="100" x2="26" y2="62"/><line x1="110" y1="100" x2="194" y2="138"/>
+        <line x1="110" y1="100" x2="62" y2="26"/><line x1="110" y1="100" x2="158" y2="174"/>
+        <line x1="110" y1="100" x2="194" y2="62"/><line x1="110" y1="100" x2="26" y2="138"/>
+        <line x1="110" y1="100" x2="158" y2="26"/><line x1="110" y1="100" x2="62" y2="174"/>
+      </g>
+      <!-- Center character -->
+      <circle cx="110" cy="90" r="30" fill="#191A23"/>
+      <circle cx="100" cy="86" r="4" fill="#fff"/>
+      <circle cx="120" cy="86" r="4" fill="#fff"/>
+      <path d="M100 100 Q110 110 120 100" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <!-- Green star -->
+      <path d="M110 152 L112.5 144 L115 152 L123 154.5 L115 157 L112.5 165 L110 157 L102 154.5Z" fill="#B9FF66"/>
+      <!-- Small star -->
+      <path d="M62 52 L63.5 47 L65 52 L70 53.5 L65 55 L63.5 60 L62 55 L57 53.5Z" fill="#191A23"/>
+    </svg>
+  </div>
+</div>
+
+<!-- CASE STUDIES -->
+<section class="case-studies" id="cases">
+  <div class="section-header">
+    <div><span class="section-label">Case Studies</span></div>
+    <p>Explore Real-Life Examples of Our Proven Digital Marketing Success through Our Case Studies</p>
+  </div>
+  <div class="cases-grid-wrap">
+  <div class="cases-grid">
+    <div class="case-item">
+      <p>For a local restaurant, we implemented a targeted PPC campaign that resulted in a 50% increase in website traffic and a 25% increase in sales.</p>
+      <a class="case-link" href="#">
+        Learn more
+        <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#B9FF66" stroke-width="1.5"/><path d="M7 10h6M10 7l3 3-3 3" stroke="#B9FF66" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="case-item">
+      <p>For a B2B software company, we developed an SEO strategy that resulted in a first page ranking for key keywords and a 200% increase in organic traffic.</p>
+      <a class="case-link" href="#">
+        Learn more
+        <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#B9FF66" stroke-width="1.5"/><path d="M7 10h6M10 7l3 3-3 3" stroke="#B9FF66" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="case-item">
+      <p>For a national retail chain, we created a social media marketing campaign that increased followers by 25% and generated a 20% increase in online sales.</p>
+      <a class="case-link" href="#">
+        Learn more
+        <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#B9FF66" stroke-width="1.5"/><path d="M7 10h6M10 7l3 3-3 3" stroke="#B9FF66" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="section-header">
+    <div><span class="section-label">Our Working Process</span></div>
+    <p>Step-by-Step Guide to Achieving Your Business Goals</p>
+  </div>
+  <div class="process-list">
+    <div class="process-item open">
+      <div class="process-header" onclick="toggleProcess(this)">
+        <span class="process-num">01</span>
+        <span class="process-title">Consultation</span>
+        <div class="process-toggle">
+          <svg viewBox="0 0 18 18" fill="none" stroke="#191A23" stroke-width="2" stroke-linecap="round"><line x1="9" y1="3" x2="9" y2="15"/><line x1="3" y1="9" x2="15" y2="9"/></svg>
+        </div>
+      </div>
+      <div class="process-body">
+        <div class="process-body-inner">During the initial consultation, we will discuss your business goals and objectives, target audience, and current marketing efforts. This will allow us to understand your needs and tailor our services to best fit your requirements.</div>
+      </div>
+    </div>
+    <div class="process-item">
+      <div class="process-header" onclick="toggleProcess(this)">
+        <span class="process-num">02</span>
+        <span class="process-title">Research and Strategy Development</span>
+        <div class="process-toggle">
+          <svg viewBox="0 0 18 18" fill="none" stroke="#191A23" stroke-width="2" stroke-linecap="round"><line x1="9" y1="3" x2="9" y2="15"/><line x1="3" y1="9" x2="15" y2="9"/></svg>
+        </div>
+      </div>
+      <div class="process-body">
+        <div class="process-body-inner">We conduct in-depth market research, competitor analysis, and audience profiling to develop a custom strategy aligned with your business objectives and growth goals.</div>
+      </div>
+    </div>
+    <div class="process-item">
+      <div class="process-header" onclick="toggleProcess(this)">
+        <span class="process-num">03</span>
+        <span class="process-title">Implementation</span>
+        <div class="process-toggle">
+          <svg viewBox="0 0 18 18" fill="none" stroke="#191A23" stroke-width="2" stroke-linecap="round"><line x1="9" y1="3" x2="9" y2="15"/><line x1="3" y1="9" x2="15" y2="9"/></svg>
+        </div>
+      </div>
+      <div class="process-body">
+        <div class="process-body-inner">Our expert team executes the strategy across all channels, creating compelling content, launching campaigns, and optimising performance from day one.</div>
+      </div>
+    </div>
+    <div class="process-item">
+      <div class="process-header" onclick="toggleProcess(this)">
+        <span class="process-num">04</span>
+        <span class="process-title">Monitoring and Optimization</span>
+        <div class="process-toggle">
+          <svg viewBox="0 0 18 18" fill="none" stroke="#191A23" stroke-width="2" stroke-linecap="round"><line x1="9" y1="3" x2="9" y2="15"/><line x1="3" y1="9" x2="15" y2="9"/></svg>
+        </div>
+      </div>
+      <div class="process-body">
+        <div class="process-body-inner">We continuously monitor campaign performance using real-time analytics, making data-driven adjustments to maximise ROI and meet evolving business needs.</div>
+      </div>
+    </div>
+    <div class="process-item">
+      <div class="process-header" onclick="toggleProcess(this)">
+        <span class="process-num">05</span>
+        <span class="process-title">Reporting and Communication</span>
+        <div class="process-toggle">
+          <svg viewBox="0 0 18 18" fill="none" stroke="#191A23" stroke-width="2" stroke-linecap="round"><line x1="9" y1="3" x2="9" y2="15"/><line x1="3" y1="9" x2="15" y2="9"/></svg>
+        </div>
+      </div>
+      <div class="process-body">
+        <div class="process-body-inner">You receive regular, transparent reports with clear metrics, actionable insights, and dedicated support from your account manager to keep you informed at every step.</div>
+      </div>
+    </div>
+    <div class="process-item">
+      <div class="process-header" onclick="toggleProcess(this)">
+        <span class="process-num">06</span>
+        <span class="process-title">Continual Improvement</span>
+        <div class="process-toggle">
+          <svg viewBox="0 0 18 18" fill="none" stroke="#191A23" stroke-width="2" stroke-linecap="round"><line x1="9" y1="3" x2="9" y2="15"/><line x1="3" y1="9" x2="15" y2="9"/></svg>
+        </div>
+      </div>
+      <div class="process-body">
+        <div class="process-body-inner">We embrace a culture of continuous improvement, regularly reviewing strategy, testing new approaches, and refining our methods to ensure long-term success for your business.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team" id="team">
+  <div class="section-header">
+    <div><span class="section-label">Team</span></div>
+    <p>Meet the skilled and experienced team behind our successful digital marketing strategies</p>
+  </div>
+  <div class="team-grid">
+
+    <div class="team-card">
+      <div class="team-li-btn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></div>
+      <div class="team-top">
+        <div class="team-avatar" style="background:#B9FF66;font-size:22px">JS</div>
+        <div class="team-info">
+          <h3>John Smith</h3>
+          <span>CEO and Founder</span>
+        </div>
+      </div>
+      <p class="team-bio">10+ years of experience in digital marketing. Expertise in SEO, PPC, and content strategy.</p>
+    </div>
+
+    <div class="team-card">
+      <div class="team-li-btn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></div>
+      <div class="team-top">
+        <div class="team-avatar" style="background:#cce4ff">JD</div>
+        <div class="team-info">
+          <h3>Jane Doe</h3>
+          <span>Director of Operations</span>
+        </div>
+      </div>
+      <p class="team-bio">7+ years of experience in project management and team leadership. Strong organizational and communication skills.</p>
+    </div>
+
+    <div class="team-card">
+      <div class="team-li-btn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></div>
+      <div class="team-top">
+        <div class="team-avatar" style="background:#ffd6b3">MB</div>
+        <div class="team-info">
+          <h3>Michael Brown</h3>
+          <span>Senior SEO Specialist</span>
+        </div>
+      </div>
+      <p class="team-bio">5+ years of experience in SEO and content creation. Proficient in keyword research and on-page optimization.</p>
+    </div>
+
+    <div class="team-card">
+      <div class="team-li-btn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></div>
+      <div class="team-top">
+        <div class="team-avatar" style="background:#f9d4f0">EJ</div>
+        <div class="team-info">
+          <h3>Emily Johnson</h3>
+          <span>PPC Manager</span>
+        </div>
+      </div>
+      <p class="team-bio">3+ years of experience in paid search advertising. Skilled in campaign management and performance analysis.</p>
+    </div>
+
+    <div class="team-card">
+      <div class="team-li-btn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></div>
+      <div class="team-top">
+        <div class="team-avatar" style="background:#d4f5d4">BW</div>
+        <div class="team-info">
+          <h3>Brian Williams</h3>
+          <span>Social Media Specialist</span>
+        </div>
+      </div>
+      <p class="team-bio">4+ years of experience in social media marketing. Proficient in creating engaging content, analysing metrics, and building engagement.</p>
+    </div>
+
+    <div class="team-card">
+      <div class="team-li-btn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></div>
+      <div class="team-top">
+        <div class="team-avatar" style="background:#ffe0e0">SK</div>
+        <div class="team-info">
+          <h3>Sarah Kim</h3>
+          <span>Content Creator</span>
+        </div>
+      </div>
+      <p class="team-bio">2+ years of experience in writing and editing. Skilled in creating compelling, SEO-optimized content for various industries.</p>
+    </div>
+  </div>
+  <div class="see-all-wrap">
+    <button class="btn-dark">See all team</button>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="section-header">
+    <div><span class="section-label">Testimonials</span></div>
+    <p>Hear from Our Satisfied Clients: Read Our Testimonials to Learn More about Our Digital Marketing Services</p>
+  </div>
+  <div class="testimonials-wrap">
+  <div class="testimonials-track-wrap">
+    <div class="testimonials-track" id="testiTrack">
+      <div class="testimonial-card">
+        <p>We have been working with Positivus for the past year and have seen a significant increase in website traffic and leads as a result of their efforts. The team is professional, responsive, and truly cares about the success of our business. We highly recommend Positivus to any company looking to grow their online presence.</p>
+        <div class="testimonial-author">
+          <strong>John Smith</strong>
+          <span>Marketing Director at XYZ Corp</span>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p>Positivus transformed our digital marketing strategy completely. Their SEO work helped us rank on the first page for all our target keywords within 3 months. The ROI has been incredible and the team is always available to answer questions and adjust the strategy as needed.</p>
+        <div class="testimonial-author">
+          <strong>Maria Garcia</strong>
+          <span>CEO at TechStart Inc</span>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p>Working with Positivus has been a game-changer for our e-commerce business. Their PPC campaigns and social media strategy drove a 40% increase in online revenue in just six months. We couldn't be happier with the results and the level of service we receive.</p>
+        <div class="testimonial-author">
+          <strong>David Chen</strong>
+          <span>Founder at Retail Ventures</span>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p>The content strategy Positivus developed for us completely changed how we connect with our audience. Our blog traffic tripled and we've seen a meaningful increase in qualified leads. Their team genuinely understands our industry and it shows in every piece of work they deliver.</p>
+        <div class="testimonial-author">
+          <strong>Sarah Mitchell</strong>
+          <span>Head of Marketing at BlueWave</span>
+        </div>
+      </div>
+    </div>
+    <div class="testi-controls">
+      <div class="testi-arrows">
+        <button class="testi-arrow" onclick="prevTesti()" aria-label="Previous">
+          <svg viewBox="0 0 18 18" fill="none"><path d="M11 14l-5-5 5-5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="testi-arrow" onclick="nextTesti()" aria-label="Next">
+          <svg viewBox="0 0 18 18" fill="none"><path d="M7 4l5 5-5 5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <div class="testi-dots" id="testiDots">
+        <div class="testi-dot active" onclick="goTesti(0)"></div>
+        <div class="testi-dot" onclick="goTesti(1)"></div>
+        <div class="testi-dot" onclick="goTesti(2)"></div>
+        <div class="testi-dot" onclick="goTesti(3)"></div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-header">
+    <div><span class="section-label">Contact Us</span></div>
+    <p>Connect with Us: Let's Discuss Your Digital Marketing Needs</p>
+  </div>
+  <div class="contact-wrap">
+  <div class="contact-inner">
+    <div class="contact-form">
+      <div class="radio-group">
+        <label class="radio-opt"><input type="radio" name="type" value="say-hi" checked/> Say Hi</label>
+        <label class="radio-opt"><input type="radio" name="type" value="quote"/> Get a Quote</label>
+      </div>
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" placeholder="Name"/>
+      </div>
+      <div class="form-group">
+        <label>Email*</label>
+        <input type="email" placeholder="Email"/>
+      </div>
+      <div class="form-group">
+        <label>Message*</label>
+        <textarea placeholder="Message"></textarea>
+      </div>
+      <button class="btn-dark" style="width:100%;padding:16px">Send Message</button>
+    </div>
+    <div class="contact-deco">
+      <svg viewBox="0 0 340 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#191A23" stroke-width="0.8" opacity="0.3">
+          <line x1="170" y1="160" x2="170" y2="20"/><line x1="170" y1="160" x2="170" y2="300"/>
+          <line x1="170" y1="160" x2="30" y2="160"/><line x1="170" y1="160" x2="310" y2="160"/>
+          <line x1="170" y1="160" x2="71" y2="61"/><line x1="170" y1="160" x2="269" y2="259"/>
+          <line x1="170" y1="160" x2="269" y2="61"/><line x1="170" y1="160" x2="71" y2="259"/>
+          <line x1="170" y1="160" x2="50" y2="90"/><line x1="170" y1="160" x2="290" y2="230"/>
+          <line x1="170" y1="160" x2="90" y2="50"/><line x1="170" y1="160" x2="250" y2="270"/>
+          <line x1="170" y1="160" x2="290" y2="90"/><line x1="170" y1="160" x2="50" y2="230"/>
+          <line x1="170" y1="160" x2="250" y2="50"/><line x1="170" y1="160" x2="90" y2="270"/>
+        </g>
+        <!-- Big dark star -->
+        <path d="M170 110 L178 140 L210 140 L184 158 L194 188 L170 170 L146 188 L156 158 L130 140 L162 140Z" fill="#191A23"/>
+        <!-- Small green star -->
+        <path d="M170 195 L173 206 L184 206 L175 212 L178 223 L170 217 L162 223 L165 212 L156 206 L167 206Z" fill="#B9FF66"/>
+      </svg>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <a href="#" class="footer-logo">
+      <svg viewBox="0 0 28 28" fill="none" width="28" height="28">
+        <rect width="28" height="28" rx="4" fill="#B9FF66"/>
+        <path d="M7 21L14 7L21 21" stroke="#191A23" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M9.5 16h9" stroke="#191A23" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      Positivus
+    </a>
+    <ul class="footer-nav">
+      <li><a href="#">About us</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Use Cases</a></li>
+      <li><a href="#">Pricing</a></li>
+      <li><a href="#">Blog</a></li>
+    </ul>
+    <div class="footer-socials">
+      <a class="social-btn" href="#" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a class="social-btn" href="#" aria-label="Facebook">
+        <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+      </a>
+      <a class="social-btn" href="#" aria-label="Twitter">
+        <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="footer-mid">
+    <div class="footer-contact">
+      <h4>Contact us:</h4>
+      <a href="/cdn-cgi/l/email-protection#573e393138172738243e233e2122247934383a">Email: <span class="__cf_email__" data-cfemail="9af3f4fcf5daeaf5e9f3eef3ecefe9b4f9f5f7">[email&#160;protected]</span></a>
+      <a href="tel:5555678901">Phone: 555-567-8901</a>
+      <p>Address: 1234 Main St<br/>Moonstone City, Stardust State 12345</p>
+    </div>
+    <div class="footer-subscribe" style="grid-column:2/4">
+      <div style="background:rgba(255,255,255,.08);border-radius:14px;padding:32px;display:flex;flex-direction:column;gap:16px">
+        <p style="font-size:15px;color:#ccc">Subscribe to news</p>
+        <div class="subscribe-form">
+          <input type="email" placeholder="Email"/>
+          <button class="btn-green">Subscribe to news</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2023 Positivus. All Rights Reserved.</span>
+    <a href="#">Privacy Policy</a>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Accordion
+  function toggleProcess(header) {
+    const item = header.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.process-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  }
+
+  // Testimonials
+  let testiIndex = 0;
+  const track = document.getElementById('testiTrack');
+  const dots = document.querySelectorAll('.testi-dot');
+  const total = 4;
+
+  function updateTesti() {
+    // Each card is 50% wide with 14px gap; shift by card width + gap
+    const cardW = track.parentElement.offsetWidth;
+    // shift by index * (50% + gap) — simplified: shift half-width per step
+    const shift = testiIndex * (cardW / 2 + 14);
+    track.style.transform = `translateX(-${shift}px)`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === testiIndex));
+  }
+
+  function nextTesti() {
+    testiIndex = (testiIndex + 1) % total;
+    updateTesti();
+  }
+  function prevTesti() {
+    testiIndex = (testiIndex - 1 + total) % total;
+    updateTesti();
+  }
+  function goTesti(i) {
+    testiIndex = i;
+    updateTesti();
+  }
+
+  // Scroll fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.service-card,.team-card,.process-item,.case-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity .5s ease, transform .5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
